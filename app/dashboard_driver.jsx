@@ -7,7 +7,7 @@ import {
   Text,
   Dimensions,
   SafeAreaView,
-  Image, // 1. Import Image component
+  Image,
 } from "react-native";
 import { useRouter } from "expo-router";
 import {
@@ -25,7 +25,6 @@ const DashboardDriver = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* ... Header and Map code remains the same ... */}
       <View style={styles.header}>
         <TouchableOpacity
           activeOpacity={0.8}
@@ -98,11 +97,9 @@ const DashboardDriver = () => {
         </View>
       )}
 
-      {/* --- BOTTOM NAVBAR WITH CUSTOM IMAGES --- */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.homeFab}>
           <View style={styles.homeFabInner}>
-            {/* Custom Home Image */}
             <Image
               source={require("../assets/epinoy/car/driver/onclick_home.png")}
               style={styles.fabIcon}
@@ -161,7 +158,6 @@ const DashboardDriver = () => {
 };
 
 const styles = StyleSheet.create({
-  // ... existing styles ...
   container: { flex: 1, backgroundColor: "white" },
   header: {
     height: 120,
