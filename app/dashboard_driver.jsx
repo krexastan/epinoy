@@ -47,7 +47,10 @@ const DashboardDriver = () => {
         </TouchableOpacity>
 
         <View style={styles.headerIcons}>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => router.push("/notification_driver")}
+          >
             <View style={styles.blueCircle}>
               <Ionicons name="notifications" size={24} color="white" />
               {notifications > 0 && (
@@ -57,7 +60,10 @@ const DashboardDriver = () => {
               )}
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => router.push("/chat_support_driver")}
+          >
             <View style={styles.blueCircle}>
               <MaterialCommunityIcons
                 name="headphones-settings"
