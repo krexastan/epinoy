@@ -7,11 +7,11 @@ import {
   Text,
   Dimensions,
   SafeAreaView,
+  Image, // 1. Import Image component
 } from "react-native";
 import { useRouter } from "expo-router";
 import {
   MaterialCommunityIcons,
-  FontAwesome5,
   Ionicons,
   MaterialIcons,
 } from "@expo/vector-icons";
@@ -25,6 +25,7 @@ const DashboardDriver = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* ... Header and Map code remains the same ... */}
       <View style={styles.header}>
         <TouchableOpacity
           activeOpacity={0.8}
@@ -57,7 +58,6 @@ const DashboardDriver = () => {
               )}
             </View>
           </TouchableOpacity>
-
           <TouchableOpacity style={styles.iconButton}>
             <View style={styles.blueCircle}>
               <MaterialCommunityIcons
@@ -98,10 +98,15 @@ const DashboardDriver = () => {
         </View>
       )}
 
+      {/* --- BOTTOM NAVBAR WITH CUSTOM IMAGES --- */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.homeFab}>
           <View style={styles.homeFabInner}>
-            <MaterialIcons name="home" size={40} color="white" />
+            {/* Custom Home Image */}
+            <Image
+              source={require("../assets/epinoy/car/driver/onclick_home.png")}
+              style={styles.fabIcon}
+            />
           </View>
         </TouchableOpacity>
 
@@ -110,7 +115,10 @@ const DashboardDriver = () => {
             style={styles.navLink}
             onPress={() => router.push("/transactions")}
           >
-            <MaterialIcons name="receipt-long" size={28} color="#D63439" />
+            <Image
+              source={require("../assets/epinoy/car/driver/transaction.png")}
+              style={styles.navIcon}
+            />
             <Text style={styles.navText}>Transaction</Text>
           </TouchableOpacity>
 
@@ -118,10 +126,9 @@ const DashboardDriver = () => {
             style={styles.navLink}
             onPress={() => router.push("/payment")}
           >
-            <MaterialCommunityIcons
-              name="qrcode-scan"
-              size={28}
-              color="#D63439"
+            <Image
+              source={require("../assets/epinoy/car/driver/scan.png")}
+              style={styles.navIcon}
             />
             <Text style={styles.navText}>Payment</Text>
           </TouchableOpacity>
@@ -130,7 +137,10 @@ const DashboardDriver = () => {
             style={styles.navLink}
             onPress={() => router.push("/history")}
           >
-            <MaterialCommunityIcons name="history" size={28} color="#D63439" />
+            <Image
+              source={require("../assets/epinoy/car/driver/history.png")}
+              style={styles.navIcon}
+            />
             <Text style={styles.navText}>History</Text>
           </TouchableOpacity>
 
@@ -138,7 +148,10 @@ const DashboardDriver = () => {
             style={styles.navLink}
             onPress={() => router.push("/profile_driver")}
           >
-            <FontAwesome5 name="user-alt" size={22} color="#D63439" />
+            <Image
+              source={require("../assets/epinoy/car/driver/profile.png")}
+              style={styles.navIcon}
+            />
             <Text style={styles.navText}>Profile</Text>
           </TouchableOpacity>
         </View>
@@ -148,10 +161,8 @@ const DashboardDriver = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-  },
+  // ... existing styles ...
+  container: { flex: 1, backgroundColor: "white" },
   header: {
     height: 120,
     paddingTop: 40,
@@ -162,21 +173,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     zIndex: 10,
   },
-  statusToggle: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  statusText: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginLeft: 5,
-  },
-  headerIcons: {
-    flexDirection: "row",
-  },
-  iconButton: {
-    marginLeft: 10,
-  },
+  statusToggle: { flexDirection: "row", alignItems: "center" },
+  statusText: { fontSize: 18, fontWeight: "600", marginLeft: 5 },
+  headerIcons: { flexDirection: "row" },
+  iconButton: { marginLeft: 10 },
   blueCircle: {
     width: 45,
     height: 45,
@@ -201,11 +201,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "white",
   },
-  badgeText: {
-    color: "white",
-    fontSize: 10,
-    fontWeight: "bold",
-  },
+  badgeText: { color: "white", fontSize: 10, fontWeight: "bold" },
   mapContainer: {
     flex: 1,
     backgroundColor: "#ccc",
@@ -214,12 +210,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginTop: -10,
   },
-  map: {
-    flex: 1,
-  },
-  searchWrapper: {
-    padding: 20,
-  },
+  map: { flex: 1 },
+  searchWrapper: { padding: 20 },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
@@ -238,11 +230,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  searchPlaceholder: {
-    color: "#888",
-    paddingLeft: 15,
-    fontSize: 16,
-  },
+  searchPlaceholder: { color: "#888", paddingLeft: 15, fontSize: 16 },
   startActionContainer: {
     position: "absolute",
     bottom: 120,
@@ -258,10 +246,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
   },
   startBtnText: {
     color: "white",
@@ -269,6 +253,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 2,
   },
+
   bottomNav: {
     height: 80,
     backgroundColor: "white",
@@ -288,16 +273,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   homeFabInner: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 74,
+    height: 74,
+    borderRadius: 37,
     backgroundColor: "#D63439",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 4,
     borderColor: "white",
+    overflow: "hidden",
+  },
+  fabIcon: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   navItems: {
     flex: 1,
@@ -311,10 +306,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: (width - 120) / 4,
   },
+  navIcon: {
+    width: 28,
+    height: 28,
+    resizeMode: "contain",
+  },
   navText: {
     fontSize: 9,
     color: "#D63439",
-    marginTop: 2,
+    marginTop: 4,
     fontWeight: "500",
   },
 });

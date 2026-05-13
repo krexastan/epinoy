@@ -47,7 +47,7 @@ const TripDriver = () => {
 
           <View style={styles.qrWrapper}>
             <Image
-              source={require("../assets/epinoy/car/driver/scan.png")}
+              source={require("../assets/epinoy/car/driver/qr_code.png")}
               style={styles.qrImage}
             />
           </View>
@@ -60,7 +60,7 @@ const TripDriver = () => {
               <Text style={styles.halfButtonText}>Confirm Cash</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.halfButton, { backgroundColor: "#3DD36B" }]}
+              style={[styles.halfButton]}
               onPress={() => router.push("/dashboard_driver")}
             >
               <Text style={styles.halfButtonText}>Confirm QR</Text>
