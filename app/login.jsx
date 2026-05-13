@@ -29,6 +29,14 @@ export default function LoginScreen() {
     }
   };
 
+  const handleRegisterNavigation = () => {
+    if (role === "driver") {
+      router.push("/register_driver");
+    } else {
+      router.push("/register_passenger");
+    }
+  };
+
   return (
     <ImageBackground
       source={require("../assets/epinoy/bg.png")}
@@ -121,7 +129,7 @@ export default function LoginScreen() {
 
                 <View style={styles.footer}>
                   <Text style={styles.footerText}>Don't have an account? </Text>
-                  <TouchableOpacity onPress={() => router.push("/register")}>
+                  <TouchableOpacity onPress={handleRegisterNavigation}>
                     <Text style={styles.registerLink}>Register Now</Text>
                   </TouchableOpacity>
                 </View>

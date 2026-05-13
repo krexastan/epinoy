@@ -13,16 +13,14 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
 
-const RegisterPassenger = () => {
+const RegisterDriver2 = () => {
   const router = useRouter();
-  const [gender, setGender] = useState("");
 
   return (
     <View style={styles.mainWrapper}>
       <ImageBackground
-        source={require("../assets/epinoy/bg_reg.png")}
+        source={require("../assets/epinoy/bg.png")}
         style={StyleSheet.absoluteFillObject}
         resizeMode="cover"
       >
@@ -45,112 +43,70 @@ const RegisterPassenger = () => {
               style={styles.logoImage}
             />
           </View>
-
           <View style={styles.bottomSection}>
             <View style={styles.contentContainer}>
               <View style={styles.headerBadge}>
-                <Text style={styles.headerBadgeText}>
-                  Passenger Registration
-                </Text>
+                <Text style={styles.headerBadgeText}>Driver Registration</Text>
               </View>
-              <Text style={styles.stepTitle}>Basic Information</Text>
+              <Text style={styles.stepTitle}>License & Identification</Text>
 
-              <Text style={styles.labelText}>Full Name</Text>
+              <Text style={styles.labelText}>Driver's License Number</Text>
               <View style={styles.inputWrapper}>
                 <View style={styles.iconBox}>
-                  <FontAwesome name="user" size={18} color="white" />
+                  <FontAwesome name="id-card" size={18} color="white" />
                 </View>
                 <TextInput
                   style={styles.input}
-                  placeholder="Full Name"
+                  placeholder="Ex: N01-00-000000"
                   placeholderTextColor="#A9B9D1"
                 />
               </View>
 
-              <Text style={styles.labelText}>Mobile Number</Text>
+              <Text style={styles.labelText}>License Expiry Date</Text>
               <View style={styles.inputWrapper}>
                 <View style={styles.iconBox}>
-                  <FontAwesome name="phone" size={18} color="white" />
+                  <FontAwesome
+                    name="calendar-times-o"
+                    size={18}
+                    color="white"
+                  />
                 </View>
                 <TextInput
                   style={styles.input}
-                  placeholder="09XXXXXXXXX"
-                  keyboardType="phone-pad"
+                  placeholder="MM/DD/YYYY"
                   placeholderTextColor="#A9B9D1"
                 />
               </View>
 
-              <Text style={styles.labelText}>Email Address</Text>
-              <View style={styles.inputWrapper}>
-                <View style={styles.iconBox}>
-                  <MaterialIcons name="email" size={18} color="white" />
-                </View>
+              <Text style={styles.labelText}>License (Front View)</Text>
+              <View style={styles.uploadContainer}>
                 <TextInput
-                  style={styles.input}
-                  placeholder="Email Address"
-                  keyboardType="email-address"
+                  style={styles.uploadInput}
+                  placeholder="No file selected"
+                  editable={false}
                   placeholderTextColor="#A9B9D1"
                 />
+                <TouchableOpacity style={styles.attachButton}>
+                  <Text style={styles.attachText}>Attach File</Text>
+                </TouchableOpacity>
               </View>
 
-              <Text style={styles.labelText}>Gender</Text>
-              <View style={styles.pickerWrapper}>
-                <Picker
-                  selectedValue={gender}
-                  onValueChange={(v) => setGender(v)}
-                  style={styles.picker}
-                >
-                  <Picker.Item label="Choose Gender" value="" color="#A9B9D1" />
-                  <Picker.Item label="Male" value="male" />
-                  <Picker.Item label="Female" value="female" />
-                </Picker>
-              </View>
-
-              <View style={styles.row}>
-                <View style={{ flex: 2 }}>
-                  <Text style={styles.labelText}>Date of Birth</Text>
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={[styles.input, { paddingLeft: 15 }]}
-                      placeholder="MM/DD/YYYY"
-                      placeholderTextColor="#A9B9D1"
-                    />
-                    <FontAwesome
-                      name="calendar"
-                      size={16}
-                      color="#0047AB"
-                      style={{ marginRight: 15 }}
-                    />
-                  </View>
-                </View>
-                <View style={{ flex: 1, marginLeft: 12 }}>
-                  <Text style={styles.labelText}>Age</Text>
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={[styles.input, { textAlign: "center" }]}
-                      placeholder="00"
-                      keyboardType="numeric"
-                      placeholderTextColor="#A9B9D1"
-                    />
-                  </View>
-                </View>
-              </View>
-
-              <Text style={styles.labelText}>Home Address</Text>
-              <View style={styles.inputWrapper}>
-                <View style={styles.iconBox}>
-                  <FontAwesome name="home" size={18} color="white" />
-                </View>
+              <Text style={styles.labelText}>License (Back View)</Text>
+              <View style={styles.uploadContainer}>
                 <TextInput
-                  style={styles.input}
-                  placeholder="Home Address"
+                  style={styles.uploadInput}
+                  placeholder="No file selected"
+                  editable={false}
                   placeholderTextColor="#A9B9D1"
                 />
+                <TouchableOpacity style={styles.attachButton}>
+                  <Text style={styles.attachText}>Attach File</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
             <View style={styles.footerRow}>
-              <Text style={styles.pageIndicator}>1 / 2</Text>
+              <Text style={styles.pageIndicator}>2 / 5</Text>
               <View style={styles.navButtons}>
                 <TouchableOpacity
                   style={styles.backNavButton}
@@ -160,7 +116,7 @@ const RegisterPassenger = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.nextNavButton}
-                  onPress={() => router.push("/register_passenger_2")}
+                  onPress={() => router.push("/register_driver_3")}
                 >
                   <Text style={styles.nextNavText}>Next</Text>
                 </TouchableOpacity>
@@ -259,21 +215,36 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#333",
   },
-  pickerWrapper: {
+  uploadContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
     borderColor: "#D1DCEB",
     borderRadius: 8,
-    marginBottom: 16,
     backgroundColor: "white",
     height: 48,
+    marginBottom: 16,
+    paddingRight: 8,
+  },
+  uploadInput: {
+    flex: 1,
+    paddingHorizontal: 12,
+    fontSize: 15,
+    color: "#333",
+  },
+  attachButton: {
+    backgroundColor: "#E0E0E0",
+    height: 32,
+    paddingHorizontal: 15,
     justifyContent: "center",
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#C0C0C0",
   },
-  picker: {
-    width: "100%",
-  },
-  row: {
-    flexDirection: "row",
-    width: "100%",
+  attachText: {
+    color: "#666",
+    fontSize: 12,
+    fontWeight: "600",
   },
   footerRow: {
     flexDirection: "row",
@@ -315,4 +286,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterPassenger;
+export default RegisterDriver2;

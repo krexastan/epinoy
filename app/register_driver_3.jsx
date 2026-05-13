@@ -12,17 +12,18 @@ import {
   Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const RegisterPassenger = () => {
+const RegisterDriver3 = () => {
   const router = useRouter();
-  const [gender, setGender] = useState("");
+  const [preferredShift, setPreferredShift] = useState("Morning");
+
+  const shifts = ["Morning", "Evening", "Night"];
 
   return (
     <View style={styles.mainWrapper}>
       <ImageBackground
-        source={require("../assets/epinoy/bg_reg.png")}
+        source={require("../assets/epinoy/bg.png")}
         style={StyleSheet.absoluteFillObject}
         resizeMode="cover"
       >
@@ -49,108 +50,71 @@ const RegisterPassenger = () => {
           <View style={styles.bottomSection}>
             <View style={styles.contentContainer}>
               <View style={styles.headerBadge}>
-                <Text style={styles.headerBadgeText}>
-                  Passenger Registration
-                </Text>
+                <Text style={styles.headerBadgeText}>Driver Registration</Text>
               </View>
-              <Text style={styles.stepTitle}>Basic Information</Text>
 
-              <Text style={styles.labelText}>Full Name</Text>
+              <Text style={styles.stepTitle}>Work Details</Text>
+
+              {/* license num */}
+              <Text style={styles.labelText}>Driver's License Number</Text>
               <View style={styles.inputWrapper}>
                 <View style={styles.iconBox}>
-                  <FontAwesome name="user" size={18} color="white" />
+                  <MaterialCommunityIcons
+                    name="account-box-outline"
+                    size={22}
+                    color="white"
+                  />
                 </View>
                 <TextInput
                   style={styles.input}
-                  placeholder="Full Name"
+                  placeholder="Driver's License Number"
                   placeholderTextColor="#A9B9D1"
                 />
               </View>
 
-              <Text style={styles.labelText}>Mobile Number</Text>
+              {/* exp date*/}
+              <Text style={styles.labelText}>License Expiry Date</Text>
               <View style={styles.inputWrapper}>
-                <View style={styles.iconBox}>
-                  <FontAwesome name="phone" size={18} color="white" />
-                </View>
                 <TextInput
-                  style={styles.input}
-                  placeholder="09XXXXXXXXX"
-                  keyboardType="phone-pad"
+                  style={[styles.input, { paddingLeft: 15 }]}
+                  placeholder="MM/DD/YYYY"
                   placeholderTextColor="#A9B9D1"
+                />
+                <FontAwesome
+                  name="calendar"
+                  size={18}
+                  color="#0047AB"
+                  style={{ marginRight: 15 }}
                 />
               </View>
 
-              <Text style={styles.labelText}>Email Address</Text>
-              <View style={styles.inputWrapper}>
-                <View style={styles.iconBox}>
-                  <MaterialIcons name="email" size={18} color="white" />
-                </View>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email Address"
-                  keyboardType="email-address"
-                  placeholderTextColor="#A9B9D1"
-                />
-              </View>
-
-              <Text style={styles.labelText}>Gender</Text>
-              <View style={styles.pickerWrapper}>
-                <Picker
-                  selectedValue={gender}
-                  onValueChange={(v) => setGender(v)}
-                  style={styles.picker}
-                >
-                  <Picker.Item label="Choose Gender" value="" color="#A9B9D1" />
-                  <Picker.Item label="Male" value="male" />
-                  <Picker.Item label="Female" value="female" />
-                </Picker>
-              </View>
-
-              <View style={styles.row}>
-                <View style={{ flex: 2 }}>
-                  <Text style={styles.labelText}>Date of Birth</Text>
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={[styles.input, { paddingLeft: 15 }]}
-                      placeholder="MM/DD/YYYY"
-                      placeholderTextColor="#A9B9D1"
-                    />
-                    <FontAwesome
-                      name="calendar"
-                      size={16}
-                      color="#0047AB"
-                      style={{ marginRight: 15 }}
-                    />
-                  </View>
-                </View>
-                <View style={{ flex: 1, marginLeft: 12 }}>
-                  <Text style={styles.labelText}>Age</Text>
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={[styles.input, { textAlign: "center" }]}
-                      placeholder="00"
-                      keyboardType="numeric"
-                      placeholderTextColor="#A9B9D1"
-                    />
-                  </View>
-                </View>
-              </View>
-
-              <Text style={styles.labelText}>Home Address</Text>
-              <View style={styles.inputWrapper}>
-                <View style={styles.iconBox}>
-                  <FontAwesome name="home" size={18} color="white" />
-                </View>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Home Address"
-                  placeholderTextColor="#A9B9D1"
-                />
+              {/* pref shift */}
+              <Text style={styles.labelText}>Preferred Shift:</Text>
+              <View style={styles.shiftContainer}>
+                {shifts.map((shift) => (
+                  <TouchableOpacity
+                    key={shift}
+                    style={[
+                      styles.shiftButton,
+                      preferredShift === shift && styles.shiftButtonActive,
+                    ]}
+                    onPress={() => setPreferredShift(shift)}
+                  >
+                    <Text
+                      style={[
+                        styles.shiftText,
+                        preferredShift === shift && styles.shiftTextActive,
+                      ]}
+                    >
+                      {shift}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </View>
             </View>
 
             <View style={styles.footerRow}>
-              <Text style={styles.pageIndicator}>1 / 2</Text>
+              <Text style={styles.pageIndicator}>3 / 5</Text>
               <View style={styles.navButtons}>
                 <TouchableOpacity
                   style={styles.backNavButton}
@@ -160,7 +124,7 @@ const RegisterPassenger = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.nextNavButton}
-                  onPress={() => router.push("/register_passenger_2")}
+                  onPress={() => router.push("/register_driver_4")}
                 >
                   <Text style={styles.nextNavText}>Next</Text>
                 </TouchableOpacity>
@@ -259,21 +223,32 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#333",
   },
-  pickerWrapper: {
-    borderWidth: 1,
-    borderColor: "#D1DCEB",
-    borderRadius: 8,
-    marginBottom: 16,
-    backgroundColor: "white",
-    height: 48,
-    justifyContent: "center",
-  },
-  picker: {
-    width: "100%",
-  },
-  row: {
+  shiftContainer: {
     flexDirection: "row",
-    width: "100%",
+    justifyContent: "space-between",
+    marginTop: 4,
+  },
+  shiftButton: {
+    flex: 1,
+    height: 44,
+    borderWidth: 1.5,
+    borderColor: "#0047AB",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 4,
+    backgroundColor: "white",
+  },
+  shiftButtonActive: {
+    backgroundColor: "#0047AB",
+  },
+  shiftText: {
+    color: "#0047AB",
+    fontWeight: "700",
+    fontSize: 14,
+  },
+  shiftTextActive: {
+    color: "white",
   },
   footerRow: {
     flexDirection: "row",
@@ -315,4 +290,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterPassenger;
+export default RegisterDriver3;
